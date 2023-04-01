@@ -14,7 +14,7 @@ Policy A: HR team members can access employee performance data.
 Policy B: Payroll team members can access salary data.
 -->
   <table>
-    <caption>Policy table</caption>
+    <caption>Permission Policy</caption>
     <tr>
       <th>Policy</th>
       <th>Role</th>
@@ -37,21 +37,24 @@ Policy B: Payroll team members can access salary data.
 
   <!-- 
 A "Membership" table:
-  User A is a member of the payroll team. 
-  The payroll team is a member of the HR team.  
+Policy C: User A is a member of the payroll team. 
+Policy D: The payroll team is a member of the HR team.  
 -->
 
   <table>
-    <caption>Membership table</caption>
+    <caption>Membership policy</caption>
     <tr>
+      <th>Policy</th>
       <th>Member</th>
       <th>Group</th>
     </tr>
     <tr>
+      <td>C</td>
       <td>User A</td>
       <td>Payroll team</td>
     </tr>
     <tr>
+      <td>D</td>
       <td>Payroll team</td>
       <td>HR team</td>
     </tr>
@@ -70,24 +73,17 @@ The learner can enter "ALLOW" or "DENY" in the input field.
 The table will then display the correctness of the user's input.
 
 The table contains the following questions:
-
-whether HR team	can access Employee performance data
-whether HR team	can access Salary data
-whether HR team can access Financial data
-whether Payroll team	can access Employee performance data
-whether Payroll team	can access Salary data
-whether Payroll team can access Financial data
 whether User A can access Employee performance data
 whether User A can access Salary data
 whether User A can access Financial data
 -->
 <table>
-  <caption>Permission Table</caption>
+  <caption>Permission Evaluation</caption>
   <tr>
     <th>Entity</th>
     <th>Resource</th>
     <th>Permission</th>
-    <th>Answer</th>
+    <th>Feedback</th>
   </tr>
   <tr>
     <td>User A</td>
@@ -152,7 +148,7 @@ whether User A can access Financial data
       a1.innerHTML = "Correct";
       a1.className = "correct";
     } else {
-      a1.innerHTML = "Incorrect";
+      a1.innerHTML = "Incorrect. Please refer to policy C, D, and A.";
       a1.className = "incorrect";
     }
   }
@@ -162,7 +158,7 @@ whether User A can access Financial data
       a2.innerHTML = "Correct";
       a2.className = "correct";
     } else {
-      a2.innerHTML = "Incorrect";
+      a2.innerHTML = "Incorrect. Please refer to policy C and B.";
       a2.className = "incorrect";
     }
   }
@@ -172,7 +168,7 @@ whether User A can access Financial data
       a3.innerHTML = "Correct";
       a3.className = "correct";
     } else {
-      a3.innerHTML = "Incorrect";
+      a3.innerHTML = "Incorrect. No policy allows User A to access Financial data.";
       a3.className = "incorrect";
     }
   }
