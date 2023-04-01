@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RBAC HTML Table</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <!-- 
+A "Policy" table:
+Policy A: HR team members can access employee performance data.
+Policy B: Payroll team members can access salary data.
+-->
+  <table>
+    <caption>Policy table</caption>
+    <tr>
+      <th>Policy</th>
+      <th>Role</th>
+      <th>Resource</th>
+      <th>Permission</th>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>HR team</td>
+      <td>Employee performance data</td>
+      <td>ALLOW</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>Payroll team</td>
+      <td>Salary data</td>
+      <td>ALLOW</td>
+    </tr>
+  </table>
+
+  <!-- 
+A "Membership" table:
+  User A is a member of the payroll team. 
+  The payroll team is a member of the HR team.  
+-->
+
+  <table>
+    <caption>Membership table</caption>
+    <tr>
+      <th>Member</th>
+      <th>Group</th>
+    </tr>
+    <tr>
+      <td>User A</td>
+      <td>Payroll team</td>
+    </tr>
+    <tr>
+      <td>Payroll team</td>
+      <td>HR team</td>
+    </tr>
+  </table>
+</body>
+
+</html>
+
+<!-- 
+A "Permission" table:
+
+This is an interactive table that ask the learner to enter whether a user can access certain resources.
+
+The learner can enter "ALLOW" or "DENY" in the input field.
+
+The table will then display the correctness of the user's input.
+
+The table contains the following questions:
+
+whether HR team	can access Employee performance data
+whether HR team	can access Salary data
+whether HR team can access Financial data
+whether Payroll team	can access Employee performance data
+whether Payroll team	can access Salary data
+whether Payroll team can access Financial data
+whether User A can access Employee performance data
+whether User A can access Salary data
+whether User A can access Financial data
+-->
+<table>
+  <caption>Permission Table</caption>
+  <tr>
+    <th>Entity</th>
+    <th>Resource</th>
+    <th>Permission</th>
+    <th>Answer</th>
+  </tr>
+  <tr>
+    <td>User A</td>
+    <td>Employee performance data</td>
+    <td>
+      <select id="q1">
+        <option value="">Select an option</option>
+        <option value="ALLOW">ALLOW</option>
+        <option value="DENY">DENY</option>
+        <option value="I don't know">I don't know</option>
+      </select>
+    </td>
+    <td id="ans1"></td>
+  </tr>
+  <tr>
+    <td>User A</td>
+    <td>Salary data</td>
+    <td>
+      <select id="q2">
+        <option value="">Select an option</option>
+        <option value="ALLOW">ALLOW</option>
+        <option value="DENY">DENY</option>
+        <option value="I don't know">I don't know</option>
+      </select>
+    </td>
+    <td id="ans2"></td>
+  </tr>
+  <tr>
+    <td>User A</td>
+    <td>Financial data</td>
+    <td>
+      <select id="q3">
+        <option value="">Select an option</option>
+        <option value="ALLOW">ALLOW</option>
+        <option value="DENY">DENY</option>
+        <option value="I don't know">I don't know</option>
+      </select>
+    </td>
+    <td id="ans3"></td>
+  </tr>
+</table>
+
+
+<script>
+  const ans1 = "ALLOW";
+  const ans2 = "ALLOW";
+  const ans3 = "DENY";
+
+  const q1 = document.getElementById("q1");
+  const q2 = document.getElementById("q2");
+  const q3 = document.getElementById("q3");
+  const a1 = document.getElementById("ans1");
+  const a2 = document.getElementById("ans2");
+  const a3 = document.getElementById("ans3");
+
+  q1.addEventListener("blur", checkAnswer1);
+  q2.addEventListener("blur", checkAnswer2);
+  q3.addEventListener("blur", checkAnswer3);
+
+  function checkAnswer1() {
+    if (q1.value.toUpperCase() === ans1) {
+      a1.innerHTML = "Correct";
+      a1.className = "correct";
+    } else {
+      a1.innerHTML = "Incorrect";
+      a1.className = "incorrect";
+    }
+  }
+
+  function checkAnswer2() {
+    if (q2.value.toUpperCase() === ans2) {
+      a2.innerHTML = "Correct";
+      a2.className = "correct";
+    } else {
+      a2.innerHTML = "Incorrect";
+      a2.className = "incorrect";
+    }
+  }
+
+  function checkAnswer3() {
+    if (q3.value.toUpperCase() === ans3) {
+      a3.innerHTML = "Correct";
+      a3.className = "correct";
+    } else {
+      a3.innerHTML = "Incorrect";
+      a3.className = "incorrect";
+    }
+  }
+</script>
