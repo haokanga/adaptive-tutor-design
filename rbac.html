@@ -294,10 +294,132 @@
         }
       });
     </script>
-
-
   </div>
 
+  <div>
+    <h1>Task #4</h1>
+    <p><strong>Task Description:</strong> In this task, you are provided with two tables - a permission policy table and
+      a membership policy table.
+      Please select the policies that are needed to determine whether User A can access Salary data.</p>
+    <h2>Permission Policy</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Policy</th>
+          <th>Role</th>
+          <th>Resource</th>
+          <th>Permission</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A</td>
+          <td>HR team</td>
+          <td>Employee performance data</td>
+          <td>ALLOW</td>
+          <td>Policy A allows the HR team to access employee performance data.</td>
+        </tr>
+        <tr>
+          <td>B</td>
+          <td>Payroll team</td>
+          <td>Salary data</td>
+          <td>ALLOW</td>
+          <td>Policy B allows the Payroll team to access salary data.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Membership Policy</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Policy</th>
+          <th>Member</th>
+          <th>Group</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C</td>
+          <td>User A</td>
+          <td>Payroll team</td>
+          <td>User A is a member of the Payroll team.</td>
+        </tr>
+        <tr>
+          <td>D</td>
+          <td>Payroll team</td>
+          <td>HR team</td>
+          <td>The Payroll team is a member of the HR team.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="activity">
+      <h2>Select the Policies</h2>
+      <p>Select the policies that are needed to determine whether User A can access Salary data:</p>
+
+      <form id="task4-form">
+        <div class="policy">
+          <input type="checkbox" id="task4-policy-a">
+          <label for="task4-policy-a">Policy A</label>
+        </div>
+        <div class="policy">
+          <input type="checkbox" id="task4-policy-b">
+          <label for="task4-policy-b">Policy B</label>
+        </div>
+        <div class="policy">
+          <input type="checkbox" id="task4-policy-c">
+          <label for="task4-policy-c">Policy C</label>
+        </div>
+        <div class="policy">
+          <input type="checkbox" id="task4-policy-d">
+          <label for="task4-policy-d">Policy D</label>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <div id="task4-feedback"></div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $('#task4-form').submit(function (event) {
+          event.preventDefault();
+
+          var policyASelected = $('#task4-policy-a').prop('checked');
+          var policyBSelected = $('#task4-policy-b').prop('checked');
+          var policyCSelected = $('#task4-policy-c').prop('checked');
+          var policyDSelected = $('#task4-policy-d').prop('checked');
+
+          if (policyBSelected && policyCSelected && policyDSelected && !policyASelected) {
+            $('#task4-feedback').html('<p class="result correct">Correct! Policies B, C, and D are needed to determine whether User A can access Salary data.</p>');
+          } else {
+            var missingPolicies = [];
+            if (!policyBSelected) {
+              missingPolicies.push('Policy B');
+            }
+            if (!policyCSelected) {
+              missingPolicies.push('Policy C');
+            }
+            if (!policyDSelected) {
+              missingPolicies.push('Policy D');
+            }
+            if (policyASelected) {
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Policy A is not needed to determine whether User A can access Salary data.</p>');
+            } else if (missingPolicies.length === 1) {
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. The missing policy is: ' + missingPolicies[0] + '.</p>');
+            } else if (missingPolicies.length > 1) {
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. The missing policies are: ' + missingPolicies.join(', ') + '.</p>');
+            } else {
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Please select the policies that are needed to determine whether User A can access Salary data.</p>');
+            }
+          }
+        });
+      });
+    </script>
+  </div>
 
 
 
@@ -312,9 +434,8 @@
       selecting
       the correct option from the drop-down menu. The table will then display whether your answer is correct or not.
     </p>
-
+    <h2>Permission Policy</h2>
     <table>
-      <caption>Permission Policy</caption>
       <tr>
         <th>Policy</th>
         <th>Role</th>
@@ -338,8 +459,8 @@
       </tr>
     </table>
 
+    <h2>Membership policy</h2>
     <table>
-      <caption>Membership policy</caption>
       <tr>
         <th>Policy</th>
         <th>Member</th>
@@ -374,8 +495,8 @@
       whether User A can access Salary data
       whether User A can access Financial data
     -->
+    <h2>Permission Evaluation</h2>
     <table>
-      <caption>Permission Evaluation</caption>
       <tr>
         <th>Entity</th>
         <th>Resource</th>
