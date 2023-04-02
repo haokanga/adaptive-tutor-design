@@ -8,68 +8,187 @@
 </head>
 
 <body>
+  <div>
+    <h1>Task #1</h1>
+    <div class="activity">
+      <p><strong>Task Description:</strong> In this task, you will be presented with a real-world scenario and asked to
+        implement a proper permission policy. You will need to identify the correct entity, permission (ALLOW/DENY), and
+        targeted resources to effectively address the situation. </p>
 
-  <p><strong>Task specification:</strong> In this task, you are provided with:</p>
-  <ul>
-    <li>Two tables - a permission policy table and a membership policy table</li>
-    <li>An interactive table named "Permission Evaluation"</li>
-  </ul>
-  <p>The "Permission Evaluation" table contains a sequence of questions. You need to answer the questions by selecting
-    the correct option from the drop-down menu. The table will then display whether your answer is correct or not.</p>
-  <!-- 
+      <div class="scenario">
+        <h2>Scenario:</h2>
+        <p>A new employee has joined the company and requires access to the HR database. You need to create a permission
+          policy that allows the employee to view employee information, but denies access to confidential information
+          such as salaries and performance reviews.</p>
+      </div>
+
+      <div class="question">
+        <h2>Question:</h2>
+        <p>What entity, permission, and targeted resources do you need to include in the permission policy to address
+          this situation?</p>
+
+        <form>
+          <label for="entity">Entity:</label>
+          <select id="entity">
+            <option value="">Select entity</option>
+            <option value="employee">Employee</option>
+            <option value="HR">HR</option>
+            <option value="manager">Manager</option>
+          </select>
+
+          <label for="permission">Permission:</label>
+          <select id="permission">
+            <option value="">Select permission</option>
+            <option value="allow">Allow</option>
+            <option value="deny">Deny</option>
+          </select>
+
+          <label for="resources">Targeted resources:</label>
+          <select id="resources">
+            <option value="">Select resources</option>
+            <option value="employee-info">Employee information</option>
+            <option value="salary">Salary information</option>
+            <option value="performance-review">Performance review information</option>
+          </select>
+
+          <button id="submit-btn" type="button">Submit</button>
+        </form>
+      </div>
+
+      <div class="feedback">
+        <h2>Feedback:</h2>
+        <p class="result"></p>
+      </div>
+    </div>
+
+    <style>
+      .activity {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+
+      .scenario,
+      .question,
+      .feedback {
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      button {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #3e8e41;
+      }
+
+      .result {
+        font-weight: bold;
+      }
+    </style>
+
+    <script>$(document).ready(function () {
+        $('#submit-btn').click(function (event) {
+          event.preventDefault();
+
+          var entity = $('#entity').val();
+          var permission = $('#permission').val();
+          var resources = $('#resources').val();
+
+          if (entity && permission && resources) {
+            if (entity === 'employee' && permission === 'allow' && resources === 'employee-info') {
+              $('.result').text('Correct! The employee should be allowed to view employee information.');
+            } else if (entity === 'employee' && permission === 'deny' && resources === 'salary') {
+              $('.result').text('Correct! The employee should be denied access to salary information.');
+            } else {
+              $('.result').text('Incorrect. Please try again.');
+            }
+          } else {
+            $('.result').text('Please select all options.');
+          }
+        });
+      });
+    </script>
+  </div>
+  <div>
+    <h1>Task #3</h1>
+    <p><strong>Task Description:</strong> In this task, you are provided with:</p>
+    <ul>
+      <li>Two tables - a permission policy table and a membership policy table</li>
+      <li>An interactive table named "Permission Evaluation"</li>
+    </ul>
+    <p>The "Permission Evaluation" table contains a sequence of questions. You need to answer the questions by selecting
+      the correct option from the drop-down menu. The table will then display whether your answer is correct or not.</p>
+    <!-- 
 A "Permission Policy" table:
 Policy A: HR team members can access employee performance data.
 Policy B: Payroll team members can access salary data.
 -->
-  <table>
-    <caption>Permission Policy</caption>
-    <tr>
-      <th>Policy</th>
-      <th>Role</th>
-      <th>Resource</th>
-      <th>Permission</th>
-    </tr>
-    <tr>
-      <td>A</td>
-      <td>HR team</td>
-      <td>Employee performance data</td>
-      <td>ALLOW</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>Payroll team</td>
-      <td>Salary data</td>
-      <td>ALLOW</td>
-    </tr>
-  </table>
+    <table>
+      <caption>Permission Policy</caption>
+      <tr>
+        <th>Policy</th>
+        <th>Role</th>
+        <th>Resource</th>
+        <th>Permission</th>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>HR team</td>
+        <td>Employee performance data</td>
+        <td>ALLOW</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>Payroll team</td>
+        <td>Salary data</td>
+        <td>ALLOW</td>
+      </tr>
+    </table>
 
-  <!-- 
+    <!-- 
 A "Membership policy" table:
 Policy C: User A is a member of the payroll team. 
 Policy D: The payroll team is a member of the HR team.  
 -->
 
-  <table>
-    <caption>Membership policy</caption>
-    <tr>
-      <th>Policy</th>
-      <th>Member</th>
-      <th>Group</th>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td>User A</td>
-      <td>Payroll team</td>
-    </tr>
-    <tr>
-      <td>D</td>
-      <td>Payroll team</td>
-      <td>HR team</td>
-    </tr>
-  </table>
+    <table>
+      <caption>Membership policy</caption>
+      <tr>
+        <th>Policy</th>
+        <th>Member</th>
+        <th>Group</th>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td>User A</td>
+        <td>Payroll team</td>
+      </tr>
+      <tr>
+        <td>D</td>
+        <td>Payroll team</td>
+        <td>HR team</td>
+      </tr>
+    </table>
 
 
-  <!-- 
+    <!-- 
 A "Permission Evaluation" table:
 
 This is an interactive table that ask the learner to enter whether a user can access certain resources.
@@ -83,109 +202,202 @@ whether User A can access Employee performance data
 whether User A can access Salary data
 whether User A can access Financial data
 -->
-  <table>
-    <caption>Permission Evaluation</caption>
-    <tr>
-      <th>Entity</th>
-      <th>Resource</th>
-      <th>Permission</th>
-      <th>Feedback</th>
-    </tr>
-    <tr>
-      <td>User A</td>
-      <td>Employee performance data</td>
-      <td>
-        <select id="q1">
-          <option value="">Select an option</option>
-          <option value="ALLOW">ALLOW</option>
-          <option value="DENY">DENY</option>
-          <option value="I don't know">I don't know</option>
-        </select>
-      </td>
-      <td id="ans1"></td>
-    </tr>
-    <tr>
-      <td>User A</td>
-      <td>Salary data</td>
-      <td>
-        <select id="q2">
-          <option value="">Select an option</option>
-          <option value="ALLOW">ALLOW</option>
-          <option value="DENY">DENY</option>
-          <option value="I don't know">I don't know</option>
-        </select>
-      </td>
-      <td id="ans2"></td>
-    </tr>
-    <tr>
-      <td>User A</td>
-      <td>Financial data</td>
-      <td>
-        <select id="q3">
-          <option value="">Select an option</option>
-          <option value="ALLOW">ALLOW</option>
-          <option value="DENY">DENY</option>
-          <option value="I don't know">I don't know</option>
-        </select>
-      </td>
-      <td id="ans3"></td>
-    </tr>
-  </table>
+    <table>
+      <caption>Permission Evaluation</caption>
+      <tr>
+        <th>Entity</th>
+        <th>Resource</th>
+        <th>Permission</th>
+        <th>Feedback</th>
+      </tr>
+      <tr>
+        <td>User A</td>
+        <td>Employee performance data</td>
+        <td>
+          <select id="q1">
+            <option value="">Select an option</option>
+            <option value="ALLOW">ALLOW</option>
+            <option value="DENY">DENY</option>
+            <option value="I don't know">I don't know</option>
+          </select>
+        </td>
+        <td id="ans1"></td>
+      </tr>
+      <tr>
+        <td>User A</td>
+        <td>Salary data</td>
+        <td>
+          <select id="q2">
+            <option value="">Select an option</option>
+            <option value="ALLOW">ALLOW</option>
+            <option value="DENY">DENY</option>
+            <option value="I don't know">I don't know</option>
+          </select>
+        </td>
+        <td id="ans2"></td>
+      </tr>
+      <tr>
+        <td>User A</td>
+        <td>Financial data</td>
+        <td>
+          <select id="q3">
+            <option value="">Select an option</option>
+            <option value="ALLOW">ALLOW</option>
+            <option value="DENY">DENY</option>
+            <option value="I don't know">I don't know</option>
+          </select>
+        </td>
+        <td id="ans3"></td>
+      </tr>
+    </table>
 
 
-  <script>
-    const ans1 = "ALLOW";
-    const ans2 = "ALLOW";
-    const ans3 = "DENY";
+    <script>
+      const ans1 = "ALLOW";
+      const ans2 = "ALLOW";
+      const ans3 = "DENY";
 
-    const q1 = document.getElementById("q1");
-    const q2 = document.getElementById("q2");
-    const q3 = document.getElementById("q3");
-    const a1 = document.getElementById("ans1");
-    const a2 = document.getElementById("ans2");
-    const a3 = document.getElementById("ans3");
+      const q1 = document.getElementById("q1");
+      const q2 = document.getElementById("q2");
+      const q3 = document.getElementById("q3");
+      const a1 = document.getElementById("ans1");
+      const a2 = document.getElementById("ans2");
+      const a3 = document.getElementById("ans3");
 
-    q1.addEventListener("blur", checkAnswer1);
-    q2.addEventListener("blur", checkAnswer2);
-    q3.addEventListener("blur", checkAnswer3);
+      q1.addEventListener("blur", checkAnswer1);
+      q2.addEventListener("blur", checkAnswer2);
+      q3.addEventListener("blur", checkAnswer3);
 
-    function checkAnswer1() {
-      if (q1.value.toUpperCase() === ans1) {
-        a1.innerHTML = "Correct";
-        a1.className = "correct";
-      } else {
-        a1.innerHTML = "Incorrect. Please refer to policy C, D, and A.";
-        a1.className = "incorrect";
+      function checkAnswer1() {
+        if (q1.value.toUpperCase() === ans1) {
+          a1.innerHTML = "Correct";
+          a1.className = "correct";
+        } else {
+          a1.innerHTML = "Incorrect. Please refer to policy C, D, and A.";
+          a1.className = "incorrect";
+        }
       }
-    }
 
-    function checkAnswer2() {
-      if (q2.value.toUpperCase() === ans2) {
-        a2.innerHTML = "Correct";
-        a2.className = "correct";
-      } else {
-        a2.innerHTML = "Incorrect. Please refer to policy C and B.";
-        a2.className = "incorrect";
+      function checkAnswer2() {
+        if (q2.value.toUpperCase() === ans2) {
+          a2.innerHTML = "Correct";
+          a2.className = "correct";
+        } else {
+          a2.innerHTML = "Incorrect. Please refer to policy C and B.";
+          a2.className = "incorrect";
+        }
       }
-    }
 
-    function checkAnswer3() {
-      if (q3.value.toUpperCase() === ans3) {
-        a3.innerHTML = "Correct";
-        a3.className = "correct";
-      } else {
-        a3.innerHTML = "Incorrect. No policy allows User A to access Financial data.";
-        a3.className = "incorrect";
+      function checkAnswer3() {
+        if (q3.value.toUpperCase() === ans3) {
+          a3.innerHTML = "Correct";
+          a3.className = "correct";
+        } else {
+          a3.innerHTML = "Incorrect. No policy allows User A to access Financial data.";
+          a3.className = "incorrect";
+        }
       }
-    }
-  </script>
+    </script>
 
-  <div id="skill-bar-container"></div>
-  <script>
-    $(function () {
-      $("#skill-bar-container").load("skill-bar.html");
-    });
-  </script>
+    <div>
+      <div class="skills-container">
+        <h3>Skill bars</h3>
 
+        <div class="skill">
+          <div class="skill-name">Manage Users and Groups</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 100%;">100%</div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">Create and interpret ALLOW and DENY Policies</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 30%;">30%</div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">Recognize Inheritance of Membership</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 50%;">50%</div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">Recognize Inheritance of Permissions</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">Recognize Default Permission</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">Analyze Overwrite of Permissions</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">Interpret an Organizational Chart</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .skill {
+          margin-bottom: 20px;
+        }
+
+        .skill-name {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .skill-bar {
+          height: 10px;
+          background-color: #ccc;
+          border-radius: 5px;
+          overflow: hidden;
+        }
+
+        .skill-level {
+          height: 100%;
+          background-color: orange;
+          text-align: center;
+          color: white;
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 10px;
+        }
+
+        .skills-container {
+          border: 1px solid #ccc;
+          padding: 10px;
+          border-radius: 5px;
+        }
+      </style>
+      <script>
+        $(document).ready(function () {
+          $('.skill-level').each(function () {
+            var level = $(this).text().replace('%', '');
+            $(this).animate({
+              width: level + '%'
+            }, 1000);
+          });
+        });
+
+      </script>
+    </div>
+  </div>
 </body>
 </html>
