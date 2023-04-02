@@ -4,12 +4,20 @@
 <head>
   <title>RBAC HTML Table</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
 
+  <p><strong>Task specification:</strong> In this task, you are provided with:</p>
+  <ul>
+    <li>Two tables - a permission policy table and a membership policy table</li>
+    <li>An interactive table named "Permission Evaluation"</li>
+  </ul>
+  <p>The "Permission Evaluation" table contains a sequence of questions. You need to answer the questions by selecting
+    the correct option from the drop-down menu. The table will then display whether your answer is correct or not.</p>
   <!-- 
-A "Policy" table:
+A "Permission Policy" table:
 Policy A: HR team members can access employee performance data.
 Policy B: Payroll team members can access salary data.
 -->
@@ -36,7 +44,7 @@ Policy B: Payroll team members can access salary data.
   </table>
 
   <!-- 
-A "Membership" table:
+A "Membership policy" table:
 Policy C: User A is a member of the payroll team. 
 Policy D: The payroll team is a member of the HR team.  
 -->
@@ -59,12 +67,10 @@ Policy D: The payroll team is a member of the HR team.
       <td>HR team</td>
     </tr>
   </table>
-</body>
 
-</html>
 
-<!-- 
-A "Permission" table:
+  <!-- 
+A "Permission Evaluation" table:
 
 This is an interactive table that ask the learner to enter whether a user can access certain resources.
 
@@ -77,99 +83,109 @@ whether User A can access Employee performance data
 whether User A can access Salary data
 whether User A can access Financial data
 -->
-<table>
-  <caption>Permission Evaluation</caption>
-  <tr>
-    <th>Entity</th>
-    <th>Resource</th>
-    <th>Permission</th>
-    <th>Feedback</th>
-  </tr>
-  <tr>
-    <td>User A</td>
-    <td>Employee performance data</td>
-    <td>
-      <select id="q1">
-        <option value="">Select an option</option>
-        <option value="ALLOW">ALLOW</option>
-        <option value="DENY">DENY</option>
-        <option value="I don't know">I don't know</option>
-      </select>
-    </td>
-    <td id="ans1"></td>
-  </tr>
-  <tr>
-    <td>User A</td>
-    <td>Salary data</td>
-    <td>
-      <select id="q2">
-        <option value="">Select an option</option>
-        <option value="ALLOW">ALLOW</option>
-        <option value="DENY">DENY</option>
-        <option value="I don't know">I don't know</option>
-      </select>
-    </td>
-    <td id="ans2"></td>
-  </tr>
-  <tr>
-    <td>User A</td>
-    <td>Financial data</td>
-    <td>
-      <select id="q3">
-        <option value="">Select an option</option>
-        <option value="ALLOW">ALLOW</option>
-        <option value="DENY">DENY</option>
-        <option value="I don't know">I don't know</option>
-      </select>
-    </td>
-    <td id="ans3"></td>
-  </tr>
-</table>
+  <table>
+    <caption>Permission Evaluation</caption>
+    <tr>
+      <th>Entity</th>
+      <th>Resource</th>
+      <th>Permission</th>
+      <th>Feedback</th>
+    </tr>
+    <tr>
+      <td>User A</td>
+      <td>Employee performance data</td>
+      <td>
+        <select id="q1">
+          <option value="">Select an option</option>
+          <option value="ALLOW">ALLOW</option>
+          <option value="DENY">DENY</option>
+          <option value="I don't know">I don't know</option>
+        </select>
+      </td>
+      <td id="ans1"></td>
+    </tr>
+    <tr>
+      <td>User A</td>
+      <td>Salary data</td>
+      <td>
+        <select id="q2">
+          <option value="">Select an option</option>
+          <option value="ALLOW">ALLOW</option>
+          <option value="DENY">DENY</option>
+          <option value="I don't know">I don't know</option>
+        </select>
+      </td>
+      <td id="ans2"></td>
+    </tr>
+    <tr>
+      <td>User A</td>
+      <td>Financial data</td>
+      <td>
+        <select id="q3">
+          <option value="">Select an option</option>
+          <option value="ALLOW">ALLOW</option>
+          <option value="DENY">DENY</option>
+          <option value="I don't know">I don't know</option>
+        </select>
+      </td>
+      <td id="ans3"></td>
+    </tr>
+  </table>
 
 
-<script>
-  const ans1 = "ALLOW";
-  const ans2 = "ALLOW";
-  const ans3 = "DENY";
+  <script>
+    const ans1 = "ALLOW";
+    const ans2 = "ALLOW";
+    const ans3 = "DENY";
 
-  const q1 = document.getElementById("q1");
-  const q2 = document.getElementById("q2");
-  const q3 = document.getElementById("q3");
-  const a1 = document.getElementById("ans1");
-  const a2 = document.getElementById("ans2");
-  const a3 = document.getElementById("ans3");
+    const q1 = document.getElementById("q1");
+    const q2 = document.getElementById("q2");
+    const q3 = document.getElementById("q3");
+    const a1 = document.getElementById("ans1");
+    const a2 = document.getElementById("ans2");
+    const a3 = document.getElementById("ans3");
 
-  q1.addEventListener("blur", checkAnswer1);
-  q2.addEventListener("blur", checkAnswer2);
-  q3.addEventListener("blur", checkAnswer3);
+    q1.addEventListener("blur", checkAnswer1);
+    q2.addEventListener("blur", checkAnswer2);
+    q3.addEventListener("blur", checkAnswer3);
 
-  function checkAnswer1() {
-    if (q1.value.toUpperCase() === ans1) {
-      a1.innerHTML = "Correct";
-      a1.className = "correct";
-    } else {
-      a1.innerHTML = "Incorrect. Please refer to policy C, D, and A.";
-      a1.className = "incorrect";
+    function checkAnswer1() {
+      if (q1.value.toUpperCase() === ans1) {
+        a1.innerHTML = "Correct";
+        a1.className = "correct";
+      } else {
+        a1.innerHTML = "Incorrect. Please refer to policy C, D, and A.";
+        a1.className = "incorrect";
+      }
     }
-  }
 
-  function checkAnswer2() {
-    if (q2.value.toUpperCase() === ans2) {
-      a2.innerHTML = "Correct";
-      a2.className = "correct";
-    } else {
-      a2.innerHTML = "Incorrect. Please refer to policy C and B.";
-      a2.className = "incorrect";
+    function checkAnswer2() {
+      if (q2.value.toUpperCase() === ans2) {
+        a2.innerHTML = "Correct";
+        a2.className = "correct";
+      } else {
+        a2.innerHTML = "Incorrect. Please refer to policy C and B.";
+        a2.className = "incorrect";
+      }
     }
-  }
 
-  function checkAnswer3() {
-    if (q3.value.toUpperCase() === ans3) {
-      a3.innerHTML = "Correct";
-      a3.className = "correct";
-    } else {
-      a3.innerHTML = "Incorrect. No policy allows User A to access Financial data.";
-      a3.className = "incorrect";
+    function checkAnswer3() {
+      if (q3.value.toUpperCase() === ans3) {
+        a3.innerHTML = "Correct";
+        a3.className = "correct";
+      } else {
+        a3.innerHTML = "Incorrect. No policy allows User A to access Financial data.";
+        a3.className = "incorrect";
+      }
     }
-  }
-</script>
+  </script>
+
+  <div id="skill-bar-container"></div>
+  <script>
+    $(function () {
+      $("#skill-bar-container").load("skill-bar.html");
+    });
+  </script>
+
+</body>
+</html>

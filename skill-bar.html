@@ -1,0 +1,97 @@
+<div class="skills-container">
+    <h3>Skill bars</h3>
+
+    <div class="skill">
+        <div class="skill-name">Manage Users and Groups</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 100%;">100%</div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-name">Create ALLOW and DENY Policies</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 30%;">30%</div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-name">Recognize Inheritance of Membership</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 50%;">50%</div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-name">Recognize Inheritance of Permissions</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-name">Recognize Default Permission</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-name">Analyze Overwrite of Permissions</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-name">Interpret an Organizational Chart</div>
+        <div class="skill-bar">
+            <div class="skill-level" style="width: 0%;">0%</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .skill {
+        margin-bottom: 20px;
+    }
+
+    .skill-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .skill-bar {
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .skill-level {
+        height: 100%;
+        background-color: orange;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 10px;
+    }
+
+    .skills-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.skill-level').each(function () {
+            var level = $(this).text().replace('%', '');
+            $(this).animate({
+                width: level + '%'
+            }, 1000);
+        });
+    });
+
+</script>
