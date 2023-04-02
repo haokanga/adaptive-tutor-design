@@ -130,23 +130,26 @@
       });
     </script>
   </div>
-  
+
   <div>
     <h1>Task #2</h1>
     <div class="activity">
       <p><strong>Task Description:</strong> In this task, you will be presented with a real-world scenario and asked to
         implement a proper permission policy. You will need to identify the correct entity, permission (ALLOW/DENY), and
         targeted resources to effectively address the situation. </p>
-  
+
       <div class="scenario">
         <h2>Scenario:</h2>
-        <p>A new employee has joined the company. As the employee has no HR responsibilities nor is a Manager, you want to ensure that the employee cannot accidentally access the confidential salary information. You need to create a permission policy that denies the employee access to salary information.
+        <p>A new employee has joined the company. As the employee has no HR responsibilities nor is a Manager, you want
+          to ensure that the employee cannot accidentally access the confidential salary information. You need to create
+          a permission policy that denies the employee access to salary information.
         </p>
       </div>
-  
+
       <div class="question">
         <h2>Question:</h2>
-        <p>What entity, permission, and targeted resources do you need to include in the permission policy to address this
+        <p>What entity, permission, and targeted resources do you need to include in the permission policy to address
+          this
           situation?</p>
         <form>
           <label for="entity2">Entity:</label>
@@ -156,14 +159,14 @@
             <option value="HR">HR</option>
             <option value="manager">Manager</option>
           </select>
-  
+
           <label for="permission2">Permission:</label>
           <select id="permission2">
             <option value="">Select permission</option>
             <option value="allow">Allow</option>
             <option value="deny">Deny</option>
           </select>
-  
+
           <label for="resources2">Targeted resources:</label>
           <select id="resources2">
             <option value="">Select resources</option>
@@ -171,26 +174,26 @@
             <option value="salary">Salary information</option>
             <option value="performance-review">Performance review information</option>
           </select>
-  
+
           <button id="submit-btn2" type="button">Submit</button>
         </form>
       </div>
-  
+
       <div class="feedback">
         <h2>Feedback:</h2>
         <p class="result2"></p>
       </div>
     </div>
-  
+
     <script>
       $(document).ready(function () {
         $('#submit-btn2').click(function (event) {
           event.preventDefault();
-  
+
           var entity = $('#entity2').val();
           var permission = $('#permission2').val();
           var resources = $('#resources2').val();
-  
+
           if (entity && permission && resources) {
             if (entity === 'employee' && permission === 'deny' && resources === 'salary') {
               $('.result2').text('Correct! The employee should be denied access to salary information.').addClass('correct').removeClass('incorrect');
@@ -204,10 +207,151 @@
       });
     </script>
   </div>
-  
 
   <div>
     <h1>Task #3</h1>
+    <p><strong>Task Description:</strong> In this task, you are provided with:</p>
+    <ul>
+      <li>A membership policy table</li>
+      <li>An interactive table named "Membership Evaluation"</li>
+    </ul>
+    <p>The "Membership Evaluation" table contains a sequence of questions. You need to answer the questions by
+      selecting the correct option from the drop-down menu. The table will then display whether your answer is correct
+      or not.
+    </p>
+
+    <h2>Membership Policy Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Group</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User A</td>
+          <td>Group A</td>
+          <td>User A is a member of Group A</td>
+        </tr>
+        <tr>
+          <td>Group A</td>
+          <td>Group B</td>
+          <td>Group A is a member of Group B</td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+
+    <h2>Membership Evaluation</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Is User A a member of Group A?</th>
+          <th>Is User A a member of Group B?</th>
+          <th>Is User A a member of Group C?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User A</td>
+          <td>
+            <select id="user-a-group-a">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td>
+            <select id="user-a-group-b">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td>
+            <select id="user-a-group-c">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback">
+      <h2>Feedback:</h2>
+      <ul>
+        <li class="user-a-group-a"></li>
+        <li class="user-a-group-b"></li>
+        <li class="user-a-group-c"></li>
+      </ul>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $('#user-a-group-a').change(function () {
+          evaluateMembershipA();
+        });
+    
+        $('#user-a-group-b').change(function () {
+          evaluateMembershipB();
+        });
+    
+        $('#user-a-group-c').change(function () {
+          evaluateMembershipC();
+        });
+    
+        function evaluateMembershipA() {
+          var userAGroupA = $('#user-a-group-a').val();
+    
+          if (userAGroupA) {
+            if (userAGroupA === 'yes') {
+              $('.user-a-group-a').text('Correct - User A is a member of Group A, as shown in the membership policy table.').addClass('correct').removeClass('incorrect');
+            } else {
+              $('.user-a-group-a').text('Incorrect. User A is a member of Group A, as shown in the membership policy table.').addClass('incorrect').removeClass('correct');
+            }
+          }
+        }
+    
+        function evaluateMembershipB() {
+          var userAGroupB = $('#user-a-group-b').val();
+    
+          if (userAGroupB) {
+            if (userAGroupB === 'yes') {
+              $('.user-a-group-b').text('Correct - User A is a member of Group A and Group A is a member of Group B. Therefore, User A is also a member of Group B.').addClass('correct').removeClass('incorrect');
+            } else {
+              $('.user-a-group-b').text('Incorrect - User A is a member of Group A and Group A is a member of Group B. Therefore, User A is also a member of Group B.').addClass('incorrect').removeClass('correct');
+            }
+          }
+        }
+    
+        function evaluateMembershipC() {
+          var userAGroupC = $('#user-a-group-c').val();
+    
+          if (userAGroupC) {
+            if (userAGroupC === 'no') {
+              $('.user-a-group-c').text('Correct - User A is not a member of Group C, as there is no indication of User A being a member of Group C in the membership policy table.').addClass('correct').removeClass('incorrect');
+            } else {
+              $('.user-a-group-c').text('Incorrect - User A is not a member of Group C, as there is no indication of User A being a member of Group C in the membership policy table.').addClass('incorrect').removeClass('correct');
+            }
+          }
+        }
+      });
+    </script>
+    
+
+  </div>
+
+
+
+
+  <div>
+    <h1>Task #5</h1>
     <p><strong>Task Description:</strong> In this task, you are provided with:</p>
     <ul>
       <li>Two tables - a permission policy table and a membership policy table</li>
