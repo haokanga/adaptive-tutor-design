@@ -387,18 +387,18 @@
       $(document).ready(function () {
         $('#task4-form').submit(function (event) {
           event.preventDefault();
-
+    
           var policyASelected = $('#task4-policy-a').prop('checked');
           var policyBSelected = $('#task4-policy-b').prop('checked');
           var policyCSelected = $('#task4-policy-c').prop('checked');
           var policyDSelected = $('#task4-policy-d').prop('checked');
-
-          if (policyBSelected && policyCSelected && policyDSelected && !policyASelected) {
-            $('#task4-feedback').html('<p class="result correct">Correct! Policies B, C, and D are needed to determine whether User A can access employee performance data.</p>');
+    
+          if (policyASelected && policyCSelected && policyDSelected && !policyBSelected) {
+            $('#task4-feedback').html('<p class="result correct">Correct! Policies A, C, and D are needed to determine whether User A can access employee performance data.</p>');
           } else {
             var missingPolicies = [];
-            if (!policyBSelected) {
-              missingPolicies.push('Policy B');
+            if (!policyASelected) {
+              missingPolicies.push('Policy A');
             }
             if (!policyCSelected) {
               missingPolicies.push('Policy C');
@@ -406,8 +406,8 @@
             if (!policyDSelected) {
               missingPolicies.push('Policy D');
             }
-            if (policyASelected) {
-              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Policy A is not needed to determine whether User A can access employee performance data.</p>');
+            if (policyBSelected) {
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Policy B is not needed to determine whether User A can access employee performance data.</p>');
             } else if (missingPolicies.length === 1) {
               $('#task4-feedback').html('<p class="result incorrect">Incorrect. The missing policy is: ' + missingPolicies[0] + '.</p>');
             } else if (missingPolicies.length > 1) {
@@ -419,6 +419,7 @@
         });
       });
     </script>
+    
 
     <div class="activity">
       <h2>Permission Evaluation</h2>
