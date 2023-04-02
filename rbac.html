@@ -419,6 +419,35 @@
         });
       });
     </script>
+
+    <div class="activity">
+      <h2>Select Permission</h2>
+      <form id="task4-form2">
+        <label for="task4-q2-permission">Please select whether the system should ALLOW or DENY User A's access to Salary data:</label>
+        <select id="task4-q2-permission">
+          <option value="">Select option</option>
+          <option value="allow">ALLOW</option>
+          <option value="deny">DENY</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="task4-feedback2"></div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('#task4-form2').submit(function (event) {
+          event.preventDefault();
+
+          var selectedPermission = $('#task4-q2-permission').val();
+
+          if (selectedPermission === 'allow') {
+            $('#task4-feedback2').html('<p class="result correct">Correct! User A is allowed to access Salary data.</p>');
+          } else {
+            $('#task4-feedback2').html('<p class="result incorrect">Incorrect. User A is allowed to access Salary data.</p>');
+          }
+        });
+      });
+    </script>
   </div>
 
 
