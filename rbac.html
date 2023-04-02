@@ -300,7 +300,7 @@
     <h1>Task #4</h1>
     <p><strong>Task Description:</strong> In this task, you are provided with two tables - a permission policy table and
       a membership policy table.
-      Please select all the relevant policies that are needed to determine whether User A can access Salary data.</p>
+      Please select all the relevant policies that are needed to determine whether User A can access certain resources.</p>
     <h2>Permission Policy</h2>
     <table>
       <thead>
@@ -357,7 +357,7 @@
     </table>
     <div class="activity">
       <h2>Select all the Relevant Policies</h2>
-      <p>Select all the relevant policies that are needed to determine whether User A can access Salary data:</p>
+      <p>Select all the relevant policies that are needed to determine whether User A can access employee performance data:</p>
 
       <form id="task4-form">
         <div class="policy">
@@ -394,7 +394,7 @@
           var policyDSelected = $('#task4-policy-d').prop('checked');
 
           if (policyBSelected && policyCSelected && policyDSelected && !policyASelected) {
-            $('#task4-feedback').html('<p class="result correct">Correct! Policies B, C, and D are needed to determine whether User A can access Salary data.</p>');
+            $('#task4-feedback').html('<p class="result correct">Correct! Policies B, C, and D are needed to determine whether User A can access employee performance data.</p>');
           } else {
             var missingPolicies = [];
             if (!policyBSelected) {
@@ -407,13 +407,13 @@
               missingPolicies.push('Policy D');
             }
             if (policyASelected) {
-              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Policy A is not needed to determine whether User A can access Salary data.</p>');
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Policy A is not needed to determine whether User A can access employee performance data.</p>');
             } else if (missingPolicies.length === 1) {
               $('#task4-feedback').html('<p class="result incorrect">Incorrect. The missing policy is: ' + missingPolicies[0] + '.</p>');
             } else if (missingPolicies.length > 1) {
               $('#task4-feedback').html('<p class="result incorrect">Incorrect. The missing policies are: ' + missingPolicies.join(', ') + '.</p>');
             } else {
-              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Please select the policies that are needed to determine whether User A can access Salary data.</p>');
+              $('#task4-feedback').html('<p class="result incorrect">Incorrect. Please select the policies that are needed to determine whether User A can access employee performance data.</p>');
             }
           }
         });
@@ -423,7 +423,7 @@
     <div class="activity">
       <h2>Permission Evaluation</h2>
       <form id="task4-form2">
-        <label for="task4-q2-permission">Please select whether the system should ALLOW or DENY User A's access to Salary data:</label>
+        <label for="task4-q2-permission">Please select whether the system should ALLOW or DENY User A's access to employee performance data:</label>
         <select id="task4-q2-permission">
           <option value="">Select option</option>
           <option value="allow">ALLOW</option>
@@ -441,9 +441,9 @@
           var selectedPermission = $('#task4-q2-permission').val();
 
           if (selectedPermission === 'allow') {
-            $('#task4-feedback2').html('<p class="result correct">Correct! User A is allowed to access Salary data.</p>');
+            $('#task4-feedback2').html('<p class="result correct">Correct! User A is allowed to access employee performance data.</p>');
           } else {
-            $('#task4-feedback2').html('<p class="result incorrect">Incorrect. User A is allowed to access Salary data.</p>');
+            $('#task4-feedback2').html('<p class="result incorrect">Incorrect. User A is allowed to access employee performance data.</p>');
           }
         });
       });
