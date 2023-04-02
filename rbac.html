@@ -5,55 +5,6 @@
   <title>RBAC HTML Table</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    .activity {
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-
-    .scenario,
-    .question,
-    .feedback {
-      margin-bottom: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    button {
-      padding: 5px 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #3e8e41;
-    }
-
-    .result {
-      font-weight: bold;
-    }
-
-    .correct {
-      color: green;
-    }
-
-    .incorrect {
-      color: red;
-    }
-  </style>
 </head>
 
 <body>
@@ -242,7 +193,7 @@
         </tr>
       </tbody>
     </table>
-    
+
 
 
     <h2>Membership Evaluation</h2>
@@ -297,18 +248,18 @@
         $('#user-a-group-a').change(function () {
           evaluateMembershipA();
         });
-    
+
         $('#user-a-group-b').change(function () {
           evaluateMembershipB();
         });
-    
+
         $('#user-a-group-c').change(function () {
           evaluateMembershipC();
         });
-    
+
         function evaluateMembershipA() {
           var userAGroupA = $('#user-a-group-a').val();
-    
+
           if (userAGroupA) {
             if (userAGroupA === 'yes') {
               $('.user-a-group-a').text('Correct - User A is a member of Group A, as shown in the membership policy table.').addClass('correct').removeClass('incorrect');
@@ -317,10 +268,10 @@
             }
           }
         }
-    
+
         function evaluateMembershipB() {
           var userAGroupB = $('#user-a-group-b').val();
-    
+
           if (userAGroupB) {
             if (userAGroupB === 'yes') {
               $('.user-a-group-b').text('Correct - User A is a member of Group A and Group A is a member of Group B. Therefore, User A is also a member of Group B.').addClass('correct').removeClass('incorrect');
@@ -329,10 +280,10 @@
             }
           }
         }
-    
+
         function evaluateMembershipC() {
           var userAGroupC = $('#user-a-group-c').val();
-    
+
           if (userAGroupC) {
             if (userAGroupC === 'no') {
               $('.user-a-group-c').text('Correct - User A is not a member of Group C, as there is no indication of User A being a member of Group C in the membership policy table.').addClass('correct').removeClass('incorrect');
@@ -343,7 +294,7 @@
         }
       });
     </script>
-    
+
 
   </div>
 
@@ -361,11 +312,7 @@
       selecting
       the correct option from the drop-down menu. The table will then display whether your answer is correct or not.
     </p>
-    <!-- 
-A "Permission Policy" table:
-Policy A: HR team members can access employee performance data.
-Policy B: Payroll team members can access salary data.
--->
+
     <table>
       <caption>Permission Policy</caption>
       <tr>
@@ -373,26 +320,23 @@ Policy B: Payroll team members can access salary data.
         <th>Role</th>
         <th>Resource</th>
         <th>Permission</th>
+        <th>Description</th>
       </tr>
       <tr>
         <td>A</td>
         <td>HR team</td>
         <td>Employee performance data</td>
         <td>ALLOW</td>
+        <td>Policy A allows the HR team to access employee performance data.</td>
       </tr>
       <tr>
         <td>B</td>
         <td>Payroll team</td>
         <td>Salary data</td>
         <td>ALLOW</td>
+        <td>Policy B allows the Payroll team to access salary data.</td>
       </tr>
     </table>
-
-    <!-- 
-A "Membership policy" table:
-Policy C: User A is a member of the payroll team. 
-Policy D: The payroll team is a member of the HR team.  
--->
 
     <table>
       <caption>Membership policy</caption>
@@ -400,34 +344,36 @@ Policy D: The payroll team is a member of the HR team.
         <th>Policy</th>
         <th>Member</th>
         <th>Group</th>
+        <th>Description</th>
       </tr>
       <tr>
         <td>C</td>
         <td>User A</td>
         <td>Payroll team</td>
+        <td>User A is a member of the Payroll team</td>
       </tr>
       <tr>
         <td>D</td>
         <td>Payroll team</td>
         <td>HR team</td>
+        <td>The Payroll team is a member of the HR team</td>
       </tr>
     </table>
 
-
     <!-- 
-A "Permission Evaluation" table:
+      A "Permission Evaluation" table:
 
-This is an interactive table that ask the learner to enter whether a user can access certain resources.
+      This is an interactive table that ask the learner to enter whether a user can access certain resources.
 
-The learner can enter "ALLOW" or "DENY" in the input field.
+      The learner can enter "ALLOW" or "DENY" in the input field.
 
-The table will then display the correctness of the user's input.
+      The table will then display the correctness of the user's input.
 
-The table contains the following questions:
-whether User A can access Employee performance data
-whether User A can access Salary data
-whether User A can access Financial data
--->
+      The table contains the following questions:
+      whether User A can access Employee performance data
+      whether User A can access Salary data
+      whether User A can access Financial data
+    -->
     <table>
       <caption>Permission Evaluation</caption>
       <tr>
@@ -579,39 +525,7 @@ whether User A can access Financial data
         </div>
       </div>
 
-      <style>
-        .skill {
-          margin-bottom: 20px;
-        }
 
-        .skill-name {
-          font-weight: bold;
-          margin-bottom: 5px;
-        }
-
-        .skill-bar {
-          height: 10px;
-          background-color: #ccc;
-          border-radius: 5px;
-          overflow: hidden;
-        }
-
-        .skill-level {
-          height: 100%;
-          background-color: orange;
-          text-align: center;
-          color: white;
-          font-weight: bold;
-          font-size: 12px;
-          line-height: 10px;
-        }
-
-        .skills-container {
-          border: 1px solid #ccc;
-          padding: 10px;
-          border-radius: 5px;
-        }
-      </style>
       <script>
         $(document).ready(function () {
           $('.skill-level').each(function () {
