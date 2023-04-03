@@ -160,7 +160,7 @@
   </div>
 
   <div>
-    <h1>Task #3</h1>
+    <h1>Task #3-1</h1>
     <p><strong>Task Description:</strong> In this task, you are provided with:</p>
     <ul>
       <li>A membership policy table</li>
@@ -295,6 +295,115 @@
       });
     </script>
   </div>
+
+  <div>
+    <h1>Task #3-2</h1>
+    <p><strong>Task Description:</strong> In this task, you will be presented with a diagram that illustrates membership policies, and a membership evaluation table. Please use the information provided in the diagram to answer the questions in the membership evaluation table.</p>
+    <h2>Membership Policy Diagram</h2>
+    <img src="https://user-images.githubusercontent.com/14087400/229548818-1ee64a08-87ec-47c4-8bc3-f8a5ddaf0284.png" alt="Membership Policy Diagram" />
+
+
+    <h2>Membership Evaluation</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Is User A a member of Group A?</th>
+          <th>Is User A a member of Group B?</th>
+          <th>Is User A a member of Group C?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User A</td>
+          <td>
+            <select id="task3-2-user-a-group-a">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td>
+            <select id="task3-2-user-a-group-b">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+          <td>
+            <select id="task3-2-user-a-group-c">
+              <option value="">Select option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback">
+      <h2>Feedback:</h2>
+      <ul>
+        <li class="task3-2-user-a-group-a"></li>
+        <li class="task3-2-user-a-group-b"></li>
+        <li class="task3-2-user-a-group-c"></li>
+      </ul>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $('#task3-2-user-a-group-a').change(function () {
+          evaluateMembershipA();
+        });
+    
+        $('#task3-2-user-a-group-b').change(function () {
+          evaluateMembershipB();
+        });
+    
+        $('#task3-2-user-a-group-c').change(function () {
+          evaluateMembershipC();
+        });
+    
+        function evaluateMembershipA() {
+          var userAGroupA = $('#task3-2-user-a-group-a').val();
+    
+          if (userAGroupA) {
+            if (userAGroupA === 'yes') {
+              $('.task3-2-user-a-group-a').text('Correct - User A is a member of Group A, as shown in the membership policy diagram.').addClass('correct').removeClass('incorrect');
+            } else {
+              $('.task3-2-user-a-group-a').text('Incorrect. User A is a member of Group A, as shown in the membership policy diagram.').addClass('incorrect').removeClass('correct');
+            }
+          }
+        }
+    
+        function evaluateMembershipB() {
+          var userAGroupB = $('#task3-2-user-a-group-b').val();
+    
+          if (userAGroupB) {
+            if (userAGroupB === 'yes') {
+              $('.task3-2-user-a-group-b').text('Correct - User A is a member of Group A and Group A is a member of Group B. Therefore, User A is also a member of Group B.').addClass('correct').removeClass('incorrect');
+            } else {
+              $('.task3-2-user-a-group-b').text('Incorrect - User A is a member of Group A and Group A is a member of Group B. Therefore, User A is also a member of Group B.').addClass('incorrect').removeClass('correct');
+            }
+          }
+        }
+    
+        function evaluateMembershipC() {
+          var userAGroupC = $('#task3-2-user-a-group-c').val();
+    
+          if (userAGroupC) {
+            if (userAGroupC === 'no') {
+              $('.task3-2-user-a-group-c').text('Correct - User A is not a member of Group C, as there is no indication of User A being a member of Group C in the membership policy diagram.').addClass('correct').removeClass('incorrect');
+            } else {
+              $('.task3-2-user-a-group-c').text('Incorrect - User A is not a member of Group C, as there is no indication of User A being a member of Group C in the membership policy diagram.').addClass('incorrect').removeClass('correct');
+            }
+          }
+        }
+      });
+    </script>
+    
+  </div>
+
 
   <div>
     <h1>Task #4</h1>
